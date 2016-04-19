@@ -1,0 +1,5 @@
+﻿{
+    "TestFileTimeout": "15000",
+    "EnableCodeCoverage": "true",
+    "CodeCoverageIncludes": [ "*.spec.js" ]
+}

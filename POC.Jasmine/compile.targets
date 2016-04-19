@@ -1,0 +1,28 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="compile">
+    
+  <PropertyGroup>
+    
+    <SolutionDir>$(MSBuildProjectDirectory)\..\</SolutionDir>
+
+    <ChutzpahDir>$(SolutionDir)packages\Chutzpah.4.2.1\tools\</ChutzpahDir>
+
+    <TestDir>$(ProjectDir)Scripts\spec</TestDir>
+
+    <CompileDependsOn>
+      RunJsTests;
+      $(CompileDependsOn);
+    </CompileDependsOn>
+    
+  </PropertyGroup>
+
+  <Target Name="RunJsTests" Condition="$(Configuration) == 'Debug'" AfterTargets="compile">
+    <!--<Message  Importance="high" Text="executing js tests" />
+    <Message  Importance="high" Text="ProjectDir = $(ProjectDir)" />
+    <Message  Importance="high" Text="SolutionDir = $(SolutionDir)" />
+    <Message  Importance="high" Text="ChutzpahDir = $(ChutzpahDir)" />
+    <Message  Importance="high" Text="TestDir = $(TestDir)" />-->
+    
+    <Exec Command="$(ChutzpahDir)chutzpah.console.exe $(TestDir) /silent /timeoutMilliseconds 15000" IgnoreStandardErrorWarningFormat="true"/>
+  </Target>
+  
+</Project>
